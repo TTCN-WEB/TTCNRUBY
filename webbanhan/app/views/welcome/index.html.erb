@@ -1,0 +1,30 @@
+<br />
+<h1>Chào mừng đến với Web Bán Hàng</h1>
+<p>Nếu chưa đăng ký, hãy tạo ngay một tài khoản để mở cửa hàng và rao bán hàng hóa của bạn</p>
+<br />
+
+<h3>Danh sách cửa hàng</h3>
+<table class="table table-striped table-bordered">
+  <tr>
+    <th>Người bán</th>    
+    <th>Tên shop</th>
+    <th>Sản phẩm</th>
+    <th>Giá</th>
+  </tr>
+
+<% @farmers.each do |f| %>
+  <tr>
+	<% if current_user %>
+    <td><%= link_to f.name, f %></td>    
+    <td><%= link_to f.farm, f %></td>
+    <td><%= f.produce %></td>
+    <td><%= number_to_currency(f.produce_price, :unit => "$") %></td>
+	<% else	%>
+	<td><%= f.name %></td>    
+    <td><%= f.farm %></td>
+    <td><%= f.produce %></td>
+    <td><%= number_to_currency(f.produce_price, :unit => "$") %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
